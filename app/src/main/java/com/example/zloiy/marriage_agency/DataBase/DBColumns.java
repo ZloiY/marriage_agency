@@ -1,4 +1,4 @@
-package com.example.zloiy.marriage_agency;
+package com.example.zloiy.marriage_agency.DataBase;
 
 /**
  * Created by ZloiY on 14-Sep-16.
