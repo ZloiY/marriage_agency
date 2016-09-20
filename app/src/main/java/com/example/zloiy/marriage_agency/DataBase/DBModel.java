@@ -12,11 +12,11 @@ import com.example.zloiy.marriage_agency.DataBase.DBColumns;
 public class DBModel extends SQLiteOpenHelper implements DBColumns {
     public static final String DB_NAME = "agency.db";
     public static final int DB_VERSION = 1;
-    public static final String CREATE_AGENCY = "create table" + AGENCY_TABLE + "(" + ID + "primary key autoincrement" + NAME + "text not null" + TELEPHONE_ID + "int not null" +
-            WEBSITE_ID + "int not null" + EMAIL_ID + "int not null" + ")";
-    public static final String CREATE_EMAIL = "create table" + EMAIL_TABLE + "(" + ID + "primary key autoincrement" + NAME + "text not null" + ")";
-    public static final String CREATE_WEBSITE = "create table" + WEBSITE_TABLE + "(" + ID + "primary key autoincrement" + NAME + "text not null" + ")";
-    public static final String CREATE_TELEPHONE = "create table" + TELEPHONE_TABLE + "(" + ID + "primary key autoincrement" + NAME + "int not null" + ")";
+    public static final String CREATE_AGENCY = "create table " + AGENCY_TABLE + "(" + ID + " integer primary key autoincrement, " + NAME + " text not null, " + TELEPHONE_ID + " integer not null, " +
+            WEBSITE_ID + " integer not null, " + EMAIL_ID + " integer not null" + ")";
+    public static final String CREATE_EMAIL = "create table " + EMAIL_TABLE + "(" + ID + " integer primary key autoincrement, " + NAME + " text not null" + ")";
+    public static final String CREATE_WEBSITE = "create table " + WEBSITE_TABLE + "(" + ID + " integer primary key autoincrement, " + NAME + " text not null" + ")";
+    public static final String CREATE_TELEPHONE = "create table " + TELEPHONE_TABLE + "(" + ID + " integer primary key autoincrement, " + NAME + " int not null" + ")";
     public DBModel(Context context){super(context, DB_NAME, null, DB_VERSION);}
     public void onCreate (SQLiteDatabase database){
         database.execSQL(CREATE_AGENCY);
