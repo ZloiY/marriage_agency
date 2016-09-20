@@ -23,9 +23,10 @@ public class MainActivity extends AppCompatActivity {
         controller.open();
         Button addBtn = (Button) findViewById(R.id.add_btn);
         ListView list = (ListView) findViewById(R.id.list_view);
-        String[] agency = {"marriage_agency"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, agency);
-        adapter.setNotifyOnChange(true);
+//        String[] agency = {"marriage_agency"};
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, agency);
+        MyAdapter adapter = new MyAdapter(this);
+        adapter.notifyDataSetChanged();
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -43,5 +44,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    protected void onStop() {
+        controller.close();
+        super.onStop();
     }
 }

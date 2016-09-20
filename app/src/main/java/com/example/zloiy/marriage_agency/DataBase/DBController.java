@@ -75,11 +75,16 @@ public class DBController implements DBColumns {
         return cursor;
     }
     public Cursor readAgency(){
-        String tables = "agency_table as A inner join telephone_table as T on A.telephone_id = T._id " +
-                " A inner join website_table as W on A.website_id = W._id " +
-                " A inner join email_table as E on A.email_id = E._id";
-        String[] columns = {"A.name as Name", "T.name as Telephone", "W.name as Website", "E.name as Email"};
+        String tables = "agency_table as A1 inner join telephone_table as T on A1.telephone_id = T._id, " +
+                " agency_table as A2 inner join website_table as W on A2.website_id = W._id, " +
+                " agency_table as A3 inner join email_table as E on A3.email_id = E._id";
+        String[] columns = {"A1.name as Name", "T.name as Telephone", "W.name as Website", "E.name as Email"};
         Cursor cursor = database.query(tables, columns, null, null, null, null, null);
+        if (cursor != null) cursor.moveToFirst();
+        return cursor;
+    }
+    public Cursor readAgency(int id){
+        Cursor cursor = database.query(AGENCY_TABLE, null, ID + "=" + id, null, null, null, null);
         if (cursor != null) cursor.moveToFirst();
         return cursor;
     }

@@ -51,14 +51,20 @@ public class AddActivity extends Activity implements DBColumns {
                     posWebsite = searchSame(cursorWeb, websiteName.getText().toString());
                     posTel = searchSame(cursorTel, Integer.parseInt(telephoneNumb.getText().toString()));
                     if (posEmail == 0){
+                        controller.insertEmail(emailName.getText().toString());
+                        cursorEmail = controller.readEmail();
                         cursorEmail.moveToLast();
                         emailIndex = cursorEmail.getInt(cursorEmail.getColumnIndex(ID));}
                     else emailIndex = posEmail;
                     if (posWebsite == 0){
+                        controller.insertWebsite(websiteName.getText().toString());
+                        cursorWeb = controller.readWebsite();
                         cursorWeb.moveToLast();
                         websiteIndex = cursorWeb.getInt(cursorWeb.getColumnIndex(ID));
                     }else websiteIndex = posWebsite;
                     if (posTel == 0){
+                        controller.insertTelephone(Integer.parseInt(telephoneNumb.getText().toString()));
+                        cursorTel = controller.readTelephone();
                         cursorTel.moveToLast();
                         telIndex = cursorTel.getInt(cursorTel.getColumnIndex(ID));
                     }else  telIndex = posTel;
