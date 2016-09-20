@@ -8,14 +8,18 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.zloiy.marriage_agency.DataBase.DBController;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-
+    DBController controller;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        controller = new DBController(this);
+        controller.open();
         ListView list = (ListView) findViewById(R.id.list_view);
         String[] agency = {"marriage_agency"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, agency);
