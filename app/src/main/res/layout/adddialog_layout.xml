@@ -35,6 +35,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/website_name"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Street:"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/street_name"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -26,6 +26,7 @@ public class AddActivity extends Activity implements DBColumns {
         final EditText telephoneNumb = (EditText)findViewById(R.id.telephone_number);
         final EditText emailName = (EditText)findViewById(R.id.email_name);
         final EditText websiteName = (EditText)findViewById(R.id.website_name);
+        final EditText streetName = (EditText)findViewById(R.id.street_name);
         Button addBtn = (Button)findViewById(R.id.add_btn);
         Button cnclBtn = (Button)findViewById(R.id.cncl_btn);
         controller = new DBController(this);
@@ -42,14 +43,16 @@ public class AddActivity extends Activity implements DBColumns {
             public void onClick(View v) {
                 if(!agencyName.getText().toString().isEmpty() && !telephoneNumb.getText().toString().isEmpty()
                         && !emailName.getText().toString().isEmpty() && !websiteName.getText().toString().isEmpty()) {
-                    int posEmail, posWebsite, posTel, emailIndex, websiteIndex, telIndex;
-                    Cursor cursorEmail, cursorWeb, cursorTel;
+                    int posEmail, posWebsite, posTel, posStreet, emailIndex, websiteIndex, telIndex, stIndex;
+                    Cursor cursorEmail, cursorWeb, cursorTel, cursorSt;
                     cursorEmail = controller.readEmail();
                     cursorWeb = controller.readWebsite();
                     cursorTel = controller.readTelephone();
+                    cursorSt = controller.readStreet();
                     posEmail = searchSame(cursorEmail, emailName.getText().toString());
                     posWebsite = searchSame(cursorWeb, websiteName.getText().toString());
                     posTel = searchSame(cursorTel, Integer.parseInt(telephoneNumb.getText().toString()));
+                    posStreet = searchSame(cursorSt, streetName.getText().toString());
                     if (posEmail == 0){
                         controller.insertEmail(emailName.getText().toString());
                         cursorEmail = controller.readEmail();
@@ -68,7 +71,13 @@ public class AddActivity extends Activity implements DBColumns {
                         cursorTel.moveToLast();
                         telIndex = cursorTel.getInt(cursorTel.getColumnIndex(ID));
                     }else  telIndex = posTel;
-                    controller.insertAgency(agencyName.getText().toString(), emailIndex, telIndex, websiteIndex);
+                    if (posStreet == 0){
+                        controller.insertStreet(streetName.getText().toString());
+                        cursorSt = controller.readStreet();
+                        cursorSt.moveToLast();
+                        stIndex = cursorSt.getInt(cursorSt.getColumnIndex(ID));
+                    }else stIndex = posStreet;
+                    controller.insertAgency(agencyName.getText().toString(), emailIndex, telIndex, websiteIndex, stIndex);
                 }else toast.show();
             }
         });

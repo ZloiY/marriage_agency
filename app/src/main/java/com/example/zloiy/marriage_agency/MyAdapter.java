@@ -24,7 +24,7 @@ public class MyAdapter extends BaseAdapter implements DBColumns {
     }
     @Override
     public int getCount() {
-        return controller.readAgency().getCount()+1;
+        return controller.readAgency().getCount();
     }
 
     @Override
