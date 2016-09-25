@@ -1,9 +1,12 @@
 package com.example.zloiy.marriage_agency;
 
+import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.zloiy.marriage_agency.DataBase.DBColumns;
@@ -22,7 +25,7 @@ public class InfoActivity extends AppCompatActivity implements DBColumns{
         controller.open();
         TextView telephone = (TextView)findViewById(R.id.telephone_1);
         TextView email = (TextView) findViewById(R.id.email_name);
-        TextView website = (TextView)findViewById(R.id.web_adress);
+        final TextView website = (TextView)findViewById(R.id.web_adress);
         TextView street = (TextView)findViewById(R.id.street_name);
         int pos = getIntent().getIntExtra("position", 1);
         Cursor cursor = controller.readAgency(pos+1);
@@ -35,6 +38,21 @@ public class InfoActivity extends AppCompatActivity implements DBColumns{
         website.setText(subCur.getString(subCur.getColumnIndex(NAME)));
         subCur = controller.readStreet(cursor.getInt(cursor.getColumnIndex(STREET_ID)));
         street.setText(subCur.getString(subCur.getColumnIndex(NAME)));
+        website.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://"+website.getText().toString()));
+                startActivity(browserIntent);
+            }
+        });
+        street.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:0,0?=q"+Uri.encode("Minsk")));
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);
+            }
+        });
     }
 
     @Override
