@@ -1,16 +1,18 @@
 package com.example.zloiy.marriage_agency;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
+import com.example.zloiy.marriage_agency.DataBase.DBColumns;
 import com.example.zloiy.marriage_agency.DataBase.DBController;
 
 /**
  * Created by ZloiY on 13-Sep-16.
  */
-public class InfoActivity extends AppCompatActivity {
+public class InfoActivity extends AppCompatActivity implements DBColumns{
     DBController controller;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -19,6 +21,20 @@ public class InfoActivity extends AppCompatActivity {
         controller = new DBController(this);
         controller.open();
         TextView telephone = (TextView)findViewById(R.id.telephone_1);
+        TextView email = (TextView) findViewById(R.id.email_name);
+        TextView website = (TextView)findViewById(R.id.web_adress);
+        TextView street = (TextView)findViewById(R.id.street_name);
+        int pos = getIntent().getIntExtra("position", 1);
+        Cursor cursor = controller.readAgency(pos+1);
+        setTitle(cursor.getString(cursor.getColumnIndex(NAME)));
+        Cursor subCur = controller.readEmail(cursor.getInt(cursor.getColumnIndex(EMAIL_ID)));
+        email.setText(subCur.getString(subCur.getColumnIndex(NAME)));
+        subCur = controller.readTelephone(cursor.getInt(cursor.getColumnIndex(TELEPHONE_ID)));
+        telephone.setText(subCur.getString(subCur.getColumnIndex(NAME)));
+        subCur = controller.readWebsite(cursor.getInt(cursor.getColumnIndex(WEBSITE_ID)));
+        website.setText(subCur.getString(subCur.getColumnIndex(NAME)));
+        subCur = controller.readStreet(cursor.getInt(cursor.getColumnIndex(STREET_ID)));
+        street.setText(subCur.getString(subCur.getColumnIndex(NAME)));
     }
 
     @Override

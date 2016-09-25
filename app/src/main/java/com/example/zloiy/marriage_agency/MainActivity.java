@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(MainActivity.this, InfoActivity.class);
-                intent.putExtra("position", list.getSelectedItemPosition());
+                intent.putExtra("position", list.getSelectedItemPosition()+1);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
