@@ -5,13 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.zloiy.marriage_agency.DataBase.DBController;
 
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     DBController controller;
@@ -22,16 +20,17 @@ public class MainActivity extends AppCompatActivity {
         controller = new DBController(this);
         controller.open();
         Button addBtn = (Button) findViewById(R.id.add_btn);
-        ListView list = (ListView) findViewById(R.id.list_view);
+        final ListView list = (ListView) findViewById(R.id.list_view);
 //        String[] agency = {"marriage_agency"};
 //        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, agency);
-        MyAdapter adapter = new MyAdapter(this);
+        final MyAdapter adapter = new MyAdapter(this);
         adapter.notifyDataSetChanged();
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(MainActivity.this, InfoActivity.class);
+                intent.putExtra("position", list.getSelectedItemPosition());
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }

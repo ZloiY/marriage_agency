@@ -3,33 +3,37 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
-        android:id="@+id/text"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="Telephone 1:"/>
+        android:text="Telephone:"
+        android:textSize="20sp"
+        android:textIsSelectable="false" />
     <TextView
         android:id="@+id/telephone_1"
+        android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="12345"/>
+        />
     <TextView
-        android:id="@+id/text_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Telephone 2:"/>
-    <TextView
-        android:id="@+id/telephone_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="6789"/>
-    <TextView
-        android:id="@+id/website"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:textSize="20sp"
         android:text="Website:"/>
     <TextView
         android:id="@+id/web_adress"
+        android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="www.sample.com"/>
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="Street:"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:id="@+id/street_name"
+        />
 </LinearLayout>
