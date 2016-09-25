@@ -1,54 +1,33 @@
 package com.example.zloiy.marriage_agency;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
+import android.view.Menu;
 import android.widget.ListView;
 
-import com.example.zloiy.marriage_agency.DataBase.DBController;
 
-import java.util.ArrayList;
-
-public class MainActivity extends AppCompatActivity {
-    DBController controller;
+public class MainActivity extends FragmentActivity {
+    Fragment fragment1;
+    FragmentTransaction fragmentTransaction;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        controller = new DBController(this);
-        controller.open();
-        Button addBtn = (Button) findViewById(R.id.add_btn);
-        ListView list = (ListView) findViewById(R.id.list_view);
-//        String[] agency = {"marriage_agency"};
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, agency);
+//        Bundle extras = getIntent().getExtras();
+        /*if (extras != null){
+        ListView listView = (ListView) findViewById(R.id.list_fragment);
         MyAdapter adapter = new MyAdapter(this);
         adapter.notifyDataSetChanged();
-        list.setAdapter(adapter);
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(MainActivity.this, InfoActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-            }
-        });
-        addBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AddActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-            }
-        });
+        listView.setAdapter(adapter);}*/
+        ListFragment listFragment = new ListFragment();
+        getSupportFragmentManager().beginTransaction().add(R.id.list_fragment,listFragment).commit();
     }
 
     @Override
-    protected void onStop() {
-        controller.close();
-        super.onStop();
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
     }
 }

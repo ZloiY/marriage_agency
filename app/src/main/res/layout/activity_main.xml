@@ -3,16 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     tools:context="com.example.zloiy.marriage_agency.MainActivity">
-    <ListView
-        android:id="@+id/list_view"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
+    <fragment
+        android:id="@+id/list_fragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        class="com.example.zloiy.marriage_agency.ListFragment"
         />
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add"
-        android:id="@+id/add_btn"/>
+    <!--<fragment
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:id="@+id/info_fragment"
+        android:name="com.example.zloiy.marriage_agency.InfoFragment"/>-->
 </LinearLayout>
