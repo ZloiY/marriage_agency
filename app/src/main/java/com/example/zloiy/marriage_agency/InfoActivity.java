@@ -24,7 +24,7 @@ public class InfoActivity extends AppCompatActivity implements DBColumns{
         controller = new DBController(this);
         controller.open();
         TextView telephone = (TextView)findViewById(R.id.telephone_1);
-        TextView email = (TextView) findViewById(R.id.email_name);
+        final TextView email = (TextView) findViewById(R.id.email_name);
         final TextView website = (TextView)findViewById(R.id.web_adress);
         TextView street = (TextView)findViewById(R.id.street_name);
         int pos = getIntent().getIntExtra("position", 1);
@@ -32,6 +32,15 @@ public class InfoActivity extends AppCompatActivity implements DBColumns{
         setTitle(cursor.getString(cursor.getColumnIndex(NAME)));
         Cursor subCur = controller.readEmail(cursor.getInt(cursor.getColumnIndex(EMAIL_ID)));
         email.setText(subCur.getString(subCur.getColumnIndex(NAME)));
+        email.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mailIntent = new Intent(InfoActivity.this, MailActivity.class);
+                mailIntent.putExtra("mail_address", email.getText().toString());
+                mailIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(mailIntent);
+            }
+        });
         subCur = controller.readTelephone(cursor.getInt(cursor.getColumnIndex(TELEPHONE_ID)));
         telephone.setText(subCur.getString(subCur.getColumnIndex(NAME)));
         subCur = controller.readWebsite(cursor.getInt(cursor.getColumnIndex(WEBSITE_ID)));

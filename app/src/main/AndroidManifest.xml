@@ -17,6 +17,7 @@
         </activity>
         <activity android:name=".InfoActivity"/>
         <activity android:name=".AddActivity"/>
+        <activity android:name=".MailActivity"/>
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
 </manifest>
