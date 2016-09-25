@@ -100,6 +100,11 @@ public class DBController implements DBColumns {
         if (cursor != null) cursor.moveToFirst();
         return cursor;
     }
+    public Cursor readAllAgency(){
+        Cursor cursor = database.query(AGENCY_TABLE, null, null, null, null, null, null);
+        if (cursor != null) cursor.moveToFirst();
+        return cursor;
+    }
     public Cursor readAgency(int id){
         Cursor cursor = database.query(AGENCY_TABLE, null, ID + "=" + id, null, null, null, null);
         if (cursor != null) cursor.moveToFirst();

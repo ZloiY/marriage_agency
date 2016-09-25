@@ -24,7 +24,7 @@ public class MyAdapter extends BaseAdapter implements DBColumns {
     }
     @Override
     public int getCount() {
-        return controller.readAgency().getCount();
+        return controller.readAllAgency().getCount();
     }
 
     @Override
@@ -42,9 +42,9 @@ public class MyAdapter extends BaseAdapter implements DBColumns {
         if (convertView == null)
             convertView = mInflater.inflate(R.layout.adapter_layout, null);
         Cursor cursor = controller.readAgency(position+1);
-        TextView agency_name = (TextView) convertView.findViewById(R.id.agency_name);
+        TextView agencyName = (TextView) convertView.findViewById(R.id.agency_name);
         String name = cursor.getString(cursor.getColumnIndex(NAME));
-        agency_name.setText(name);
+        agencyName.setText(name);
         return convertView;
     }
 }
