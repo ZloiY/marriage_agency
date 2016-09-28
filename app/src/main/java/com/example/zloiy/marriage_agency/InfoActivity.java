@@ -27,7 +27,7 @@ public class InfoActivity extends AppCompatActivity implements DBColumns{
         final TextView email = (TextView) findViewById(R.id.email_name);
         final TextView website = (TextView)findViewById(R.id.web_adress);
         TextView street = (TextView)findViewById(R.id.street_name);
-        int pos = getIntent().getIntExtra("position", 1);
+        int pos = getIntent().getIntExtra("position", 0);
         Cursor cursor = controller.readAgency(pos+1);
         setTitle(cursor.getString(cursor.getColumnIndex(NAME)));
         Cursor subCur = controller.readEmail(cursor.getInt(cursor.getColumnIndex(EMAIL_ID)));

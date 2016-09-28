@@ -16,8 +16,8 @@ public class DBController implements DBColumns {
     private DBModel dbModel;
     private SQLiteDatabase database;
     private Context context;
-    public DBController(Context context){this.context = context;}
-    public DBController open() throws SQLException{
+    public DBController(Context context){
+        this.context = context;
         dbModel = new DBModel(context);
         try {
             dbModel.createDatabase();
@@ -29,6 +29,8 @@ public class DBController implements DBColumns {
         }catch(SQLException sqle){
             throw sqle;
         }
+    }
+    public DBController open() throws SQLException{
         database = dbModel.getWritableDatabase();
         return this;
     }

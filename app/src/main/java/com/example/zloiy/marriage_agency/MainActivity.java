@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         controller = new DBController(this);
         controller.open();
         Button addBtn = (Button) findViewById(R.id.add_btn);
-        final ListView list = (ListView) findViewById(R.id.list_view);
+        ListView list = (ListView) findViewById(R.id.list_view);
 //        String[] agency = {"marriage_agency"};
 //        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, agency);
         final MyAdapter adapter = new MyAdapter(this);
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(MainActivity.this, InfoActivity.class);
-                intent.putExtra("position", list.getSelectedItemPosition()+1);
+                intent.putExtra("position", position);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }

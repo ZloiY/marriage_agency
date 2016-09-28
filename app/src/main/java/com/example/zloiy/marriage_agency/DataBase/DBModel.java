@@ -34,6 +34,7 @@ public class DBModel extends SQLiteOpenHelper implements DBColumns {
         myContext = context;}
     public void  createDatabase()throws IOException{
         boolean dbExist = checkDataBase();
+//        boolean dbExist = false;
         if(!dbExist){
             this.getReadableDatabase();
             try{
@@ -57,14 +58,14 @@ public class DBModel extends SQLiteOpenHelper implements DBColumns {
     private void copyDataBase()throws IOException{
         InputStream myInput = myContext.getAssets().open(DB_NAME);
         String outFileName = DB_PATH + DB_NAME;
-        OutputStream myOutPut = new FileOutputStream(outFileName);
+        OutputStream myOutput = new FileOutputStream(outFileName);
         byte[] buffer = new byte[1024];
         int lentgh;
         while ((lentgh = myInput.read(buffer))>0){
-            myOutPut.write(buffer, 0, lentgh);
+            myOutput.write(buffer, 0, lentgh);
         }
-        myOutPut.flush();
-        myOutPut.close();
+        myOutput.flush();
+        myOutput.close();
         myInput.close();
     }
     public void openDataBase() {
