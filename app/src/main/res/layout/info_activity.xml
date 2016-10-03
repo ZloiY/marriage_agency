@@ -45,4 +45,8 @@
         android:textSize="20sp"
         android:id="@+id/street_name"
         />
+    <ImageView
+        android:id="@+id/info_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 </LinearLayout>

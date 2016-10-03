@@ -2,11 +2,13 @@ package com.example.zloiy.marriage_agency;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.zloiy.marriage_agency.DataBase.DBColumns;
@@ -27,9 +29,14 @@ public class InfoActivity extends AppCompatActivity implements DBColumns{
         final TextView email = (TextView) findViewById(R.id.email_name);
         final TextView website = (TextView)findViewById(R.id.web_adress);
         TextView street = (TextView)findViewById(R.id.street_name);
+        ImageView imageView = (ImageView)findViewById(R.id.info_image);
         int pos = getIntent().getIntExtra("position", 0);
         Cursor cursor = controller.readAgency(pos+1);
-        setTitle(cursor.getString(cursor.getColumnIndex(NAME)));
+        String agencyName = cursor.getString(cursor.getColumnIndex(NAME));
+        setTitle(agencyName);
+        int imageRes = getBaseContext().getResources().getIdentifier("drawable/"+agencyName.toLowerCase(), null, getBaseContext().getPackageName());
+        Drawable image = getBaseContext().getResources().getDrawable(imageRes);
+        imageView.setImageDrawable(image);
         Cursor subCur = controller.readEmail(cursor.getInt(cursor.getColumnIndex(EMAIL_ID)));
         email.setText(subCur.getString(subCur.getColumnIndex(NAME)));
         email.setOnClickListener(new View.OnClickListener() {
