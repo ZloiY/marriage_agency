@@ -19,7 +19,7 @@ public class MailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mail_layout);
         setTitle("Введите текст сообщения:");
-        final EditText mailText = (EditText)findViewById(R.id.mail_text);
+        final EditText mailText = (EditText)findViewById(R.id.name_surname);
         Button sendBtn = (Button)findViewById(R.id.send_btn);
         sendBtn.setOnClickListener(new View.OnClickListener() {
             @Override
