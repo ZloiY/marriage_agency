@@ -54,10 +54,12 @@ public class MyAdapter extends BaseAdapter implements DBColumns {
         agencyName.setText(name);
         int imageRes = context.getResources().getIdentifier("drawable/"+name.toLowerCase(), null, context.getPackageName());
         Drawable image;
-        if (imageRes != 0){
+        /*if (imageRes != 0){
              image = context.getResources().getDrawable(imageRes);
             agencyImage.setImageDrawable(image);}
-        else agencyImage.setImageResource(R.drawable.bonjour);
+        else agencyImage.setImageResource(R.drawable.bonjour);*/
+        BitmapWorker worker = new BitmapWorker(agencyImage, context);
+        worker.execute(imageRes);
         return convertView;
     }
 }

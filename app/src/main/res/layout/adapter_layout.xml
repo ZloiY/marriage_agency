@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#fcdf90">
     <TextView
         android:layout_width="250dp"
         android:textSize="30sp"
+        android:text="Sample"
         android:layout_height="wrap_content"
-        android:id="@+id/agency_name"/>
+        android:id="@+id/agency_name"
+        android:textColor="#2a2929" />
     <ImageView
         android:id="@+id/agency_image"
         android:layout_width="100dp"

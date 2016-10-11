@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.zloiy.marriage_agency.DataBase.DBController;
@@ -20,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
         setTitle("Свадебный салон");
         controller = new DBController(this);
         controller.open();
-        Button addBtn = (Button) findViewById(R.id.add_btn);
+//        Button addBtn = (Button) findViewById(R.id.add_btn);
         ListView list = (ListView) findViewById(R.id.list_view);
 //        String[] agency = {"marriage_agency"};
 //        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, agency);
@@ -36,14 +35,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        addBtn.setOnClickListener(new View.OnClickListener() {
+        /*addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, AddActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
-        });
+        });*/
     }
 
     @Override

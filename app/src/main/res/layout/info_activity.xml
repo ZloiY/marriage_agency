@@ -1,50 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#fcdf90">
     <TextView
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:text="Телефон:"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textColor="#2a2929" />
     <TextView
         android:id="@+id/telephone_1"
         android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        />
+        android:textColor="#2a2929" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:text="Email:"/>
+        android:text="Email:"
+        android:textColor="#2a2929" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:id="@+id/email_name"/>
+        android:id="@+id/email_name"
+        android:textColor="#2a2929" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:text="Сайт:"/>
+        android:text="Сайт:"
+        android:textColor="#2a2929" />
     <TextView
         android:id="@+id/web_adress"
         android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        />
+        android:textColor="#2a2929" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:text="Улица:"/>
+        android:text="Улица:"
+        android:textColor="#2a2929" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:id="@+id/street_name"
-        />
+        android:textColor="#2a2929" />
     <ImageView
         android:id="@+id/info_image"
         android:layout_width="wrap_content"
