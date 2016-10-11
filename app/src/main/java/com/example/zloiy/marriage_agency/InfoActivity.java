@@ -1,5 +1,6 @@
 package com.example.zloiy.marriage_agency;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
@@ -7,9 +8,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.zloiy.marriage_agency.DataBase.DBColumns;
 import com.example.zloiy.marriage_agency.DataBase.DBController;
@@ -25,10 +28,10 @@ public class InfoActivity extends AppCompatActivity implements DBColumns{
         setContentView(R.layout.info_activity);
         controller = new DBController(this);
         controller.open();
-        TextView telephone = (TextView)findViewById(R.id.telephone_1);
+        final TextView telephone = (TextView)findViewById(R.id.telephone_1);
         final TextView email = (TextView) findViewById(R.id.email_name);
         final TextView website = (TextView)findViewById(R.id.web_adress);
-        TextView street = (TextView)findViewById(R.id.street_name);
+        final TextView street = (TextView)findViewById(R.id.street_name);
         ImageView imageView = (ImageView)findViewById(R.id.info_image);
         int pos = getIntent().getIntExtra("position", 0);
         Cursor cursor = controller.readAgency(pos+1);
@@ -50,6 +53,7 @@ public class InfoActivity extends AppCompatActivity implements DBColumns{
         });
         subCur = controller.readTelephone(cursor.getInt(cursor.getColumnIndex(TELEPHONE_ID)));
         telephone.setText(subCur.getString(subCur.getColumnIndex(NAME)));
+        //telephone.setMovementMethod(LinkMovementMethod.getInstance());
         subCur = controller.readWebsite(cursor.getInt(cursor.getColumnIndex(WEBSITE_ID)));
         website.setText(subCur.getString(subCur.getColumnIndex(NAME)));
         subCur = controller.readStreet(cursor.getInt(cursor.getColumnIndex(STREET_ID)));
@@ -61,12 +65,24 @@ public class InfoActivity extends AppCompatActivity implements DBColumns{
                 startActivity(browserIntent);
             }
         });
-        street.setOnClickListener(new View.OnClickListener() {
+        /*street.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:0,0?=q"+Uri.encode("Minsk")));
                 mapIntent.setPackage("com.google.android.apps.maps");
                 startActivity(mapIntent);
+            }
+        });*/
+        telephone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent phoneIntent = new Intent(Intent.ACTION_DIAL);
+                phoneIntent.setData(Uri.parse("tel:375"+telephone.getText().toString()));
+                try{
+                    startActivity(Intent.createChooser(phoneIntent, "Call app..."));
+                }catch (ActivityNotFoundException ex){
+                    Toast.makeText(InfoActivity.this, "No call apps install.", Toast.LENGTH_SHORT);
+                }
             }
         });
     }

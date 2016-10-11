@@ -9,7 +9,8 @@
         android:text="Sample"
         android:layout_height="wrap_content"
         android:id="@+id/agency_name"
-        android:textColor="#2a2929" />
+        android:textColor="#2a2929"
+        android:typeface="serif" />
     <ImageView
         android:id="@+id/agency_image"
         android:layout_width="100dp"

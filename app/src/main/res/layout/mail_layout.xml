@@ -8,53 +8,63 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Введите ваше имя и фамилию:"
-        android:textColor="#2a2929" />
+        android:textColor="#2a2929"
+        android:typeface="serif" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/name_surname"
-        android:textColor="#2a2929" />
+        android:textColor="#2a2929"
+        android:typeface="serif" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Введите дату примерки:"
-        android:textColor="#2a2929" />
+        android:textColor="#2a2929"
+        android:typeface="serif" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/finaldate"
-        android:textColor="#2a2929" />
+        android:textColor="#2a2929"
+        android:typeface="serif" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Введите время примерки"
-        android:textColor="#2a2929" />
+        android:textColor="#2a2929"
+        android:typeface="serif" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/finaltime"
-        android:textColor="#2a2929" />
+        android:textColor="#2a2929"
+        android:typeface="serif" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Введите ваш телефон: "
-        android:textColor="#2a2929" />
+        android:textColor="#2a2929"
+        android:typeface="serif" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/utel"
-        android:textColor="#2a2929" />
+        android:textColor="#2a2929"
+        android:typeface="serif" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Ваши комментарии:"
-        android:textColor="#2a2929" />
+        android:textColor="#2a2929"
+        android:typeface="serif" />
     <EditText
         android:layout_width="match_parent"
         android:layout_weight="1"
         android:layout_height="wrap_content"
         android:id="@+id/commments"
-        android:textColor="#2a2929" />
+        android:textColor="#2a2929"
+        android:typeface="serif" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -65,7 +75,8 @@
             android:id="@+id/send_btn"
             android:text="Send"
             android:textColor="#faf9e5"
-            android:background="#2385fd" />
+            android:background="#3f51b4"
+            android:typeface="normal" />
     </LinearLayout>
 
 </LinearLayout>
