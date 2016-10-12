@@ -13,33 +13,32 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.zloiy.marriage_agency.DataBase.AgencyDAO;
 import com.example.zloiy.marriage_agency.DataBase.DBColumns;
-import com.example.zloiy.marriage_agency.DataBase.AgencyDBDAO;
 
 /**
  * Created by ZloiY on 13-Sep-16.
  */
 public class InfoActivity extends AppCompatActivity implements DBColumns{
-    AgencyDBDAO controller;
+    AgencyDAO agencyDAO;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.info_activity);
-        controller = new AgencyDBDAO(this);
-        controller.open();
+        agencyDAO = new AgencyDAO(this);
         final TextView telephone = (TextView)findViewById(R.id.telephone_1);
         final TextView email = (TextView) findViewById(R.id.email_name);
         final TextView website = (TextView)findViewById(R.id.web_adress);
         final TextView street = (TextView)findViewById(R.id.street_name);
         ImageView imageView = (ImageView)findViewById(R.id.info_image);
         int pos = getIntent().getIntExtra("position", 0);
-        Cursor cursor = controller.readAgency(pos+1);
+        Cursor cursor = agencyDAO.readAgency(pos+1);
         String agencyName = cursor.getString(cursor.getColumnIndex(NAME));
         setTitle(agencyName);
         int imageRes = getBaseContext().getResources().getIdentifier("drawable/"+agencyName.toLowerCase(), null, getBaseContext().getPackageName());
         Drawable image = getBaseContext().getResources().getDrawable(imageRes);
         imageView.setImageDrawable(image);
-        Cursor subCur = controller.readEmail(cursor.getInt(cursor.getColumnIndex(EMAIL_ID)));
+        Cursor subCur = agencyDAO.readEmail(cursor.getInt(cursor.getColumnIndex(EMAIL_ID)));
         email.setText(subCur.getString(subCur.getColumnIndex(NAME)));
         email.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,12 +49,12 @@ public class InfoActivity extends AppCompatActivity implements DBColumns{
                 startActivity(mailIntent);
             }
         });
-        subCur = controller.readTelephone(cursor.getInt(cursor.getColumnIndex(TELEPHONE_ID)));
+        subCur = agencyDAO.readTelephone(cursor.getInt(cursor.getColumnIndex(TELEPHONE_ID)));
         telephone.setText(subCur.getString(subCur.getColumnIndex(NAME)));
         //telephone.setMovementMethod(LinkMovementMethod.getInstance());
-        subCur = controller.readWebsite(cursor.getInt(cursor.getColumnIndex(WEBSITE_ID)));
+        subCur = agencyDAO.readWebsite(cursor.getInt(cursor.getColumnIndex(WEBSITE_ID)));
         website.setText(subCur.getString(subCur.getColumnIndex(NAME)));
-        subCur = controller.readStreet(cursor.getInt(cursor.getColumnIndex(STREET_ID)));
+        subCur = agencyDAO.readStreet(cursor.getInt(cursor.getColumnIndex(STREET_ID)));
         street.setText(subCur.getString(subCur.getColumnIndex(NAME)));
         website.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +87,7 @@ public class InfoActivity extends AppCompatActivity implements DBColumns{
 
     @Override
     protected void onStop() {
-        controller.close();
+        agencyDAO.close();
         super.onStop();
     }
 }
