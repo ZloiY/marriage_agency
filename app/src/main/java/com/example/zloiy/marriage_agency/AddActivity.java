@@ -9,14 +9,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.zloiy.marriage_agency.DataBase.Agency;
+import com.example.zloiy.marriage_agency.DataBase.AgencyDAO;
 import com.example.zloiy.marriage_agency.DataBase.DBColumns;
-import com.example.zloiy.marriage_agency.DataBase.DBController;
+import com.example.zloiy.marriage_agency.DataBase.AgencyDBDAO;
 
 /**
  * Created by ZloiY on 20-Sep-16.
  */
 public class AddActivity extends Activity implements DBColumns {
-    DBController controller;
+    AgencyDAO agencyDAO;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,8 +31,7 @@ public class AddActivity extends Activity implements DBColumns {
         final EditText streetName = (EditText)findViewById(R.id.street_name);
         Button addBtn = (Button)findViewById(R.id.add_btn);
         Button cnclBtn = (Button)findViewById(R.id.cncl_btn);
-        controller = new DBController(this);
-        controller.open();
+        agencyDAO = new AgencyDAO(this);
         final Toast toast = Toast.makeText(this, "Fill all fields", Toast.LENGTH_SHORT);
         cnclBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,41 +44,42 @@ public class AddActivity extends Activity implements DBColumns {
             public void onClick(View v) {
                 if(!agencyName.getText().toString().isEmpty() && !telephoneNumb.getText().toString().isEmpty()
                         && !emailName.getText().toString().isEmpty() && !websiteName.getText().toString().isEmpty()) {
-                    int posEmail, posWebsite, posTel, posStreet, emailIndex, websiteIndex, telIndex, stIndex;
+                    int posEmail, posWebsite, posTel, posStreet;
+                    Agency agency = new Agency();
                     Cursor cursorEmail, cursorWeb, cursorTel, cursorSt;
-                    cursorEmail = controller.readEmail();
-                    cursorWeb = controller.readWebsite();
-                    cursorTel = controller.readTelephone();
-                    cursorSt = controller.readStreet();
+                    cursorEmail = agencyDAO.readEmail();
+                    cursorWeb = agencyDAO.readWebsite();
+                    cursorTel = agencyDAO.readTelephone();
+                    cursorSt = agencyDAO.readStreet();
                     posEmail = searchSame(cursorEmail, emailName.getText().toString());
                     posWebsite = searchSame(cursorWeb, websiteName.getText().toString());
                     posTel = searchSame(cursorTel, Integer.parseInt(telephoneNumb.getText().toString()));
                     posStreet = searchSame(cursorSt, streetName.getText().toString());
                     if (posEmail == 0){
-                        controller.insertEmail(emailName.getText().toString());
-                        cursorEmail = controller.readEmail();
+                        agencyDAO.insertEmail(emailName.getText().toString());
+                        cursorEmail = agencyDAO.readEmail();
                         cursorEmail.moveToLast();
-                        emailIndex = cursorEmail.getInt(cursorEmail.getColumnIndex(ID));}
-                    else emailIndex = posEmail;
+                        agency.setEmailID(cursorEmail.getInt(cursorEmail.getColumnIndex(ID)));}
+                    else agency.setEmailID(posEmail);
                     if (posWebsite == 0){
-                        controller.insertWebsite(websiteName.getText().toString());
-                        cursorWeb = controller.readWebsite();
+                        agencyDAO.insertWebsite(websiteName.getText().toString());
+                        cursorWeb = agencyDAO.readWebsite();
                         cursorWeb.moveToLast();
-                        websiteIndex = cursorWeb.getInt(cursorWeb.getColumnIndex(ID));
-                    }else websiteIndex = posWebsite;
+                        agency.setWebID(cursorWeb.getInt(cursorWeb.getColumnIndex(ID)));
+                    }else agency.setWebID(posWebsite);
                     if (posTel == 0){
-                        controller.insertTelephone(Integer.parseInt(telephoneNumb.getText().toString()));
-                        cursorTel = controller.readTelephone();
+                        agencyDAO.insertTelephone(Integer.parseInt(telephoneNumb.getText().toString()));
+                        cursorTel = agencyDAO.readTelephone();
                         cursorTel.moveToLast();
-                        telIndex = cursorTel.getInt(cursorTel.getColumnIndex(ID));
-                    }else  telIndex = posTel;
+                        agency.setTelID(cursorTel.getInt(cursorTel.getColumnIndex(ID)));
+                    }else  agency.setTelID(posTel);
                     if (posStreet == 0){
-                        controller.insertStreet(streetName.getText().toString());
-                        cursorSt = controller.readStreet();
+                        agencyDAO.insertStreet(streetName.getText().toString());
+                        cursorSt = agencyDAO.readStreet();
                         cursorSt.moveToLast();
-                        stIndex = cursorSt.getInt(cursorSt.getColumnIndex(ID));
-                    }else stIndex = posStreet;
-                    controller.insertAgency(agencyName.getText().toString(), emailIndex, telIndex, websiteIndex, stIndex);
+                        agency.setStreetID(cursorSt.getInt(cursorSt.getColumnIndex(ID)));
+                    }else agency.setStreetID(posStreet);
+                    agencyDAO.insertAgency(agency);
                 }else toast.show();
             }
         });
@@ -85,7 +87,7 @@ public class AddActivity extends Activity implements DBColumns {
 
     @Override
     protected void onStop() {
-        controller.close();
+        agencyDAO.close();
         super.onStop();
     }
 

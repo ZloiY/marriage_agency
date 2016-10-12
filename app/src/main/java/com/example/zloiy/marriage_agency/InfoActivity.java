@@ -8,25 +8,24 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.zloiy.marriage_agency.DataBase.DBColumns;
-import com.example.zloiy.marriage_agency.DataBase.DBController;
+import com.example.zloiy.marriage_agency.DataBase.AgencyDBDAO;
 
 /**
  * Created by ZloiY on 13-Sep-16.
  */
 public class InfoActivity extends AppCompatActivity implements DBColumns{
-    DBController controller;
+    AgencyDBDAO controller;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.info_activity);
-        controller = new DBController(this);
+        controller = new AgencyDBDAO(this);
         controller.open();
         final TextView telephone = (TextView)findViewById(R.id.telephone_1);
         final TextView email = (TextView) findViewById(R.id.email_name);

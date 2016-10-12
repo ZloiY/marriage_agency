@@ -3,38 +3,16 @@ package com.example.zloiy.marriage_agency.DataBase;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.SQLException;
-import android.database.sqlite.SQLiteDatabase;
-
-import java.io.IOException;
-
 
 /**
- * Created by ZloiY on 14-Sep-16.
+ * Created by ZloiY on 12-Oct-16.
  */
-public class DBController implements DBColumns {
-    private DBModel dbModel;
-    private SQLiteDatabase database;
-    private Context context;
-    public DBController(Context context){
-        this.context = context;
-        dbModel = new DBModel(context);
-        try {
-            dbModel.createDatabase();
-        } catch (IOException ioe) {
-            throw new Error("Unable to create database");
-        }
-        try {
-            dbModel.openDataBase();
-        }catch(SQLException sqle){
-            throw sqle;
-        }
+public class AgencyDAO extends AgencyDBDAO implements DBColumns {
+    public AgencyDAO(Context context){
+        super(context);
+        super.open();
     }
-    public DBController open() throws SQLException{
-        database = dbModel.getWritableDatabase();
-        return this;
-    }
-    public void close(){database.close();}
+
     public void insertWebsite(String name){
         ContentValues contentValues = new ContentValues();
         contentValues.put(NAME, name);
@@ -55,13 +33,13 @@ public class DBController implements DBColumns {
         contentValues.put(NAME, name);
         database.insert(STREET_TABLE, null, contentValues);
     }
-    public void insertAgency(String name, int email_id, int telephone_id, int website_id, int street_id){
+    public void insertAgency(Agency agency){
         ContentValues contentValues = new ContentValues();
-        contentValues.put(NAME, name);
-        contentValues.put(TELEPHONE_ID, telephone_id);
-        contentValues.put(EMAIL_ID, email_id);
-        contentValues.put(WEBSITE_ID, website_id);
-        contentValues.put(STREET_ID, street_id);
+        contentValues.put(NAME, agency.getAgencyName());
+        contentValues.put(TELEPHONE_ID, agency.getTelID());
+        contentValues.put(EMAIL_ID, agency.getEmailID());
+        contentValues.put(WEBSITE_ID, agency.getWebID());
+        contentValues.put(STREET_ID, agency.getStreetID());
         database.insert(AGENCY_TABLE, null, contentValues);
     }
     public Cursor readWebsite(){

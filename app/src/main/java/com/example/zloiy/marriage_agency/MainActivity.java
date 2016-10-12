@@ -7,18 +7,18 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.example.zloiy.marriage_agency.DataBase.DBController;
+import com.example.zloiy.marriage_agency.DataBase.AgencyDAO;
+import com.example.zloiy.marriage_agency.DataBase.AgencyDBDAO;
 
 
 public class MainActivity extends AppCompatActivity {
-    DBController controller;
+    AgencyDBDAO agencyDAO;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("Свадебный салон");
-        controller = new DBController(this);
-        controller.open();
+        agencyDAO = new AgencyDAO(this);
 //        Button addBtn = (Button) findViewById(R.id.add_btn);
         ListView list = (ListView) findViewById(R.id.list_view);
 //        String[] agency = {"marriage_agency"};
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onStop() {
-        controller.close();
+        agencyDAO.close();
         super.onStop();
     }
 }

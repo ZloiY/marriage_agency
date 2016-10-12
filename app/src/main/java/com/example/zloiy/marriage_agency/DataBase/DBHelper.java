@@ -17,7 +17,7 @@ import java.sql.SQLException;
 /**
  * Created by ZloiY on 14-Sep-16.
  */
-public class DBModel extends SQLiteOpenHelper implements DBColumns {
+public class DBHelper extends SQLiteOpenHelper implements DBColumns {
     public static final String DB_NAME = "agency.db";
     public static final String DB_PATH = "/data/data/com.example.zloiy.marriage_agency/databases/";
     public static final int DB_VERSION = 1;
@@ -29,7 +29,7 @@ public class DBModel extends SQLiteOpenHelper implements DBColumns {
     public static final String CREATE_STREET = "create table " + STREET_TABLE + "(" + ID + " integer primary key autoincrement, " + NAME + " text not null" + ")";
     private final Context myContext;
     private SQLiteDatabase myDataBase;
-    public DBModel(Context context){
+    public DBHelper(Context context){
         super(context, DB_NAME, null, DB_VERSION);
         myContext = context;}
     public void  createDatabase()throws IOException{
