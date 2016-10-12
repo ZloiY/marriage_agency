@@ -1,4 +1,4 @@
-package com.example.zloiy.marriage_agency;
+package com.example.zloiy.marriage_agency.Activities;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.zloiy.marriage_agency.DataBase.AgencyDAO;
 import com.example.zloiy.marriage_agency.DataBase.DBColumns;
+import com.example.zloiy.marriage_agency.R;
 
 /**
  * Created by ZloiY on 13-Sep-16.

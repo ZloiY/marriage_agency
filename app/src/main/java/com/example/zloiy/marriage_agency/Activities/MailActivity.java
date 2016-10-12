@@ -1,4 +1,4 @@
-package com.example.zloiy.marriage_agency;
+package com.example.zloiy.marriage_agency.Activities;
 
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.zloiy.marriage_agency.R;
 
 /**
  * Created by ZloiY on 25-Sep-16.

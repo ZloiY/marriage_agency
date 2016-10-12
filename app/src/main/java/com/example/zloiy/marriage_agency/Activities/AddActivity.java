@@ -1,4 +1,4 @@
-package com.example.zloiy.marriage_agency;
+package com.example.zloiy.marriage_agency.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -12,7 +12,7 @@ import android.widget.Toast;
 import com.example.zloiy.marriage_agency.DataBase.Agency;
 import com.example.zloiy.marriage_agency.DataBase.AgencyDAO;
 import com.example.zloiy.marriage_agency.DataBase.DBColumns;
-import com.example.zloiy.marriage_agency.DataBase.AgencyDBDAO;
+import com.example.zloiy.marriage_agency.R;
 
 /**
  * Created by ZloiY on 20-Sep-16.
