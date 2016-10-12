@@ -46,6 +46,7 @@ public class AddActivity extends Activity implements DBColumns {
                         && !emailName.getText().toString().isEmpty() && !websiteName.getText().toString().isEmpty()) {
                     int posEmail, posWebsite, posTel, posStreet;
                     Agency agency = new Agency();
+                    agency.setAgencyName(agencyName.getText().toString());
                     Cursor cursorEmail, cursorWeb, cursorTel, cursorSt;
                     cursorEmail = agencyDAO.readEmail();
                     cursorWeb = agencyDAO.readWebsite();

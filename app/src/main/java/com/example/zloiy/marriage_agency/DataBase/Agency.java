@@ -10,10 +10,7 @@ public class Agency {
     private int emailID;
     private int streetID;
 
-    public Agency(){
-
-    }
-
+    public Agency(){}
     public Agency(String name, int telID, int webID, int emailID, int streetID){
         agencyName = name;
         this.telID = telID;
