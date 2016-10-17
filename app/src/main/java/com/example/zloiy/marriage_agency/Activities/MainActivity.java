@@ -14,14 +14,13 @@ import com.example.zloiy.marriage_agency.R;
 
 
 public class MainActivity extends AppCompatActivity {
-    AgencyDBDAO agencyDAO;
+    private AgencyDBDAO agencyDAO;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setTitle("Свадебный салон");
         agencyDAO = new AgencyDAO(this);
-//        Button addBtn = (Button) findViewById(R.id.add_btn);
         ListView list = (ListView) findViewById(R.id.list_view);
 //        String[] agency = {"marriage_agency"};
 //        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, agency);
@@ -37,14 +36,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        /*addBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AddActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(intent);
-            }
-        });*/
     }
 
     @Override

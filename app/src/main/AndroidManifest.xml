@@ -16,7 +16,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activities.InfoActivity"/>
-        <activity android:name=".Activities.AddActivity"/>
         <activity android:name=".Activities.MailActivity"/>
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>

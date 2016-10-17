@@ -21,7 +21,7 @@ import com.example.zloiy.marriage_agency.R;
  * Created by ZloiY on 13-Sep-16.
  */
 public class InfoActivity extends AppCompatActivity implements DBColumns{
-    AgencyDAO agencyDAO;
+    private AgencyDAO agencyDAO;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

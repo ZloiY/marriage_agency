@@ -18,9 +18,9 @@ import com.example.zloiy.marriage_agency.DataBase.AgencyDBDAO;
  * Created by ZloiY on 20-Sep-16.
  */
 public class MyAdapter extends BaseAdapter implements DBColumns {
-    AgencyDAO agencyDAO;
-    LayoutInflater mInflater;
-    Context context;
+    private AgencyDAO agencyDAO;
+    private LayoutInflater mInflater;
+    private Context context;
     public MyAdapter(Context context){
         agencyDAO = new AgencyDAO(context);
         this.context = context;
