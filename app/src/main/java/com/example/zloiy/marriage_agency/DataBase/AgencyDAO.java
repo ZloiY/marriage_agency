@@ -4,9 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
-/**
- * Created by ZloiY on 12-Oct-16.
- */
 public class AgencyDAO extends AgencyDBDAO implements DBColumns {
     public AgencyDAO(Context context){
         super(context);

@@ -12,9 +12,6 @@ import android.widget.Toast;
 
 import com.example.zloiy.marriage_agency.R;
 
-/**
- * Created by ZloiY on 25-Sep-16.
- */
 public class MailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

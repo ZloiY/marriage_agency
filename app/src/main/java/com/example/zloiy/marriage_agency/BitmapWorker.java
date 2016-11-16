@@ -9,9 +9,6 @@ import android.widget.ImageView;
 
 import java.lang.ref.WeakReference;
 
-/**
- * Created by ZloiY on 09-Oct-16.
- */
 class BitmapWorker extends AsyncTask<Integer, Void, Bitmap> {
     private final WeakReference<ImageView> imageViewReference;
     private int data = 0;

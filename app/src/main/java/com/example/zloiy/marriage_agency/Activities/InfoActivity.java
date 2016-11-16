@@ -18,9 +18,6 @@ import com.example.zloiy.marriage_agency.DataBase.AgencyDAO;
 import com.example.zloiy.marriage_agency.DataBase.DBColumns;
 import com.example.zloiy.marriage_agency.R;
 
-/**
- * Created by ZloiY on 13-Sep-16.
- */
 public class InfoActivity extends AppCompatActivity implements DBColumns{
     private AgencyDAO agencyDAO;
     @Override

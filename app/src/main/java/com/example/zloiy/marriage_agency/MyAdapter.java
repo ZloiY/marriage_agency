@@ -2,7 +2,6 @@ package com.example.zloiy.marriage_agency;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,11 +11,7 @@ import android.widget.TextView;
 
 import com.example.zloiy.marriage_agency.DataBase.AgencyDAO;
 import com.example.zloiy.marriage_agency.DataBase.DBColumns;
-import com.example.zloiy.marriage_agency.DataBase.AgencyDBDAO;
 
-/**
- * Created by ZloiY on 20-Sep-16.
- */
 public class MyAdapter extends BaseAdapter implements DBColumns {
     private AgencyDAO agencyDAO;
     private LayoutInflater mInflater;
@@ -51,11 +46,6 @@ public class MyAdapter extends BaseAdapter implements DBColumns {
         String name = cursor.getString(cursor.getColumnIndex(NAME));
         agencyName.setText(name);
         int imageRes = context.getResources().getIdentifier("drawable/"+name.toLowerCase(), null, context.getPackageName());
-        Drawable image;
-        /*if (imageRes != 0){
-             image = context.getResources().getDrawable(imageRes);
-            agencyImage.setImageDrawable(image);}
-        else agencyImage.setImageResource(R.drawable.bonjour);*/
         BitmapWorker worker = new BitmapWorker(agencyImage, context);
         worker.execute(imageRes);
         return convertView;

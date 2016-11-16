@@ -6,20 +6,15 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.example.zloiy.marriage_agency.DataBase.DBColumns;
-
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.sql.SQLException;
 
-/**
- * Created by ZloiY on 14-Sep-16.
- */
+
 public class DBHelper extends SQLiteOpenHelper implements DBColumns {
     public static final String DB_NAME = "agency.db";
-    public static final String DB_PATH = "/data/data/com.example.zloiy.marriage_agency/databases/";
+    public static  String DB_PATH = "/data/data/com.example.zloiy.marriage_agency/databases/";
     public static final int DB_VERSION = 1;
     public static final String CREATE_AGENCY = "create table " + AGENCY_TABLE + "(" + ID + " integer primary key autoincrement, " + NAME + " text not null, " + TELEPHONE_ID + " integer not null, " +
             WEBSITE_ID + " integer not null, " + EMAIL_ID + " integer not null, " + STREET_ID + " text not null)";
@@ -31,7 +26,8 @@ public class DBHelper extends SQLiteOpenHelper implements DBColumns {
     private SQLiteDatabase myDataBase;
     public DBHelper(Context context){
         super(context, DB_NAME, null, DB_VERSION);
-        myContext = context;}
+        myContext = context;
+        DB_PATH = myContext.getFilesDir().getPath();}
     public void  createDatabase()throws IOException{
         boolean dbExist = checkDataBase();
 //        boolean dbExist = false;
@@ -53,7 +49,7 @@ public class DBHelper extends SQLiteOpenHelper implements DBColumns {
             Log.e("Log", "DataBase didn't create.");
         }
         if(checkDB!=null)checkDB.close();
-        return checkDB!=null?true:false;
+        return checkDB!=null;
     }
     private void copyDataBase()throws IOException{
         InputStream myInput = myContext.getAssets().open(DB_NAME);
