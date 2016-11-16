@@ -1,9 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        Test {
+        }
+    }
     compileSdkVersion 23
     buildToolsVersion '24.0.0'
-
     defaultConfig {
         applicationId "com.example.zloiy.marriage_agency"
         minSdkVersion 15

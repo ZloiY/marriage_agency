@@ -47,40 +47,40 @@ public class AgencyDAO extends AgencyDBDAO implements DBColumns {
         if (cursor != null) cursor.moveToFirst();
         return cursor;
     }
-    public Cursor readWebsite(int id){
+    public String readWebsite(int id){
         Cursor cursor = database.query(WEBSITE_TABLE, null, ID + "=" + id, null, null, null, null);
         if (cursor != null) cursor.moveToFirst();
-        return cursor;
+        return cursor.getString(cursor.getColumnIndex(NAME));
     }
     public Cursor readTelephone(){
         Cursor cursor = database.query(TELEPHONE_TABLE, null, null, null, null, null, null);
         if (cursor != null) cursor.moveToFirst();
         return cursor;
     }
-    public Cursor readTelephone(int id){
+    public String readTelephone(int id){
         Cursor cursor = database.query(TELEPHONE_TABLE, null, ID + "=" + id, null, null, null, null);
         if (cursor != null) cursor.moveToFirst();
-        return cursor;
+        return cursor.getString(cursor.getColumnIndex(NAME));
     }
     public Cursor readEmail(){
         Cursor cursor = database.query(EMAIL_TABLE, null, null, null, null, null, null);
         if (cursor != null) cursor.moveToFirst();
         return cursor;
     }
-    public Cursor readEmail(int id){
+    public String readEmail(int id){
         Cursor cursor = database.query(EMAIL_TABLE, null, ID + "=" + id, null, null, null, null);
         if(cursor != null) cursor.moveToFirst();
-        return cursor;
+        return cursor.getString(cursor.getColumnIndex(NAME));
     }
     public Cursor readStreet(){
         Cursor cursor = database.query(STREET_TABLE, null, null, null, null, null, null, null);
         if (cursor != null) cursor.moveToFirst();
         return cursor;
     }
-    public Cursor readStreet(int id){
+    public String readStreet(int id){
         Cursor cursor = database.query(STREET_TABLE, null, ID + "=" + id, null, null, null, null);
         if (cursor != null) cursor.moveToFirst();
-        return cursor;
+        return cursor.getString(cursor.getColumnIndex(NAME));
     }
     public Cursor readAgency(){
         String tables = "agency_table as A1 inner join telephone_table as T on A1.telephone_id = T._id, " +

@@ -22,8 +22,6 @@ public class MainActivity extends AppCompatActivity {
         setTitle("Свадебный салон");
         agencyDAO = new AgencyDAO(this);
         ListView list = (ListView) findViewById(R.id.list_view);
-//        String[] agency = {"marriage_agency"};
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, agency);
         final MyAdapter adapter = new MyAdapter(this);
         adapter.notifyDataSetChanged();
         list.setAdapter(adapter);

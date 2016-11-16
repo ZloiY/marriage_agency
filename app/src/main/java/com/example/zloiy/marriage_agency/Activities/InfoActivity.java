@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.zloiy.marriage_agency.DataBase.Agency;
 import com.example.zloiy.marriage_agency.DataBase.AgencyDAO;
 import com.example.zloiy.marriage_agency.DataBase.DBColumns;
 import com.example.zloiy.marriage_agency.R;
@@ -28,19 +29,23 @@ public class InfoActivity extends AppCompatActivity implements DBColumns{
         setContentView(R.layout.info_activity);
         agencyDAO = new AgencyDAO(this);
         final TextView telephone = (TextView)findViewById(R.id.telephone_1);
-        final TextView email = (TextView) findViewById(R.id.email_name);
+        final TextView email = (TextView)findViewById(R.id.email_name);
         final TextView website = (TextView)findViewById(R.id.web_adress);
         final TextView street = (TextView)findViewById(R.id.street_name);
         ImageView imageView = (ImageView)findViewById(R.id.info_image);
         int pos = getIntent().getIntExtra("position", 0);
         Cursor cursor = agencyDAO.readAgency(pos+1);
-        String agencyName = cursor.getString(cursor.getColumnIndex(NAME));
-        setTitle(agencyName);
-        int imageRes = getBaseContext().getResources().getIdentifier("drawable/"+agencyName.toLowerCase(), null, getBaseContext().getPackageName());
+        Agency agency = new Agency();
+        agency.setAgencyName(cursor.getString(cursor.getColumnIndex(NAME)));
+        agency.setTelID(cursor.getInt(cursor.getColumnIndex(TELEPHONE_ID)));
+        agency.setWebID(cursor.getInt(cursor.getColumnIndex(WEBSITE_ID)));
+        agency.setEmailID(cursor.getInt(cursor.getColumnIndex(EMAIL_ID)));
+        agency.setStreetID(cursor.getInt(cursor.getColumnIndex(STREET_ID)));
+        setTitle(agency.getAgencyName());
+        int imageRes = getBaseContext().getResources().getIdentifier("drawable/"+agency.getAgencyName().toLowerCase(), null, getBaseContext().getPackageName());
         Drawable image = getBaseContext().getResources().getDrawable(imageRes);
         imageView.setImageDrawable(image);
-        Cursor subCur = agencyDAO.readEmail(cursor.getInt(cursor.getColumnIndex(EMAIL_ID)));
-        email.setText(subCur.getString(subCur.getColumnIndex(NAME)));
+        email.setText(agencyDAO.readEmail(agency.getEmailID()));
         email.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,13 +55,9 @@ public class InfoActivity extends AppCompatActivity implements DBColumns{
                 startActivity(mailIntent);
             }
         });
-        subCur = agencyDAO.readTelephone(cursor.getInt(cursor.getColumnIndex(TELEPHONE_ID)));
-        telephone.setText(subCur.getString(subCur.getColumnIndex(NAME)));
-        //telephone.setMovementMethod(LinkMovementMethod.getInstance());
-        subCur = agencyDAO.readWebsite(cursor.getInt(cursor.getColumnIndex(WEBSITE_ID)));
-        website.setText(subCur.getString(subCur.getColumnIndex(NAME)));
-        subCur = agencyDAO.readStreet(cursor.getInt(cursor.getColumnIndex(STREET_ID)));
-        street.setText(subCur.getString(subCur.getColumnIndex(NAME)));
+        telephone.setText(agencyDAO.readTelephone(agency.getTelID()));
+        website.setText(agencyDAO.readWebsite(agency.getTelID()));
+        street.setText(agencyDAO.readStreet(agency.getStreetID()));
         website.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,14 +65,6 @@ public class InfoActivity extends AppCompatActivity implements DBColumns{
                 startActivity(browserIntent);
             }
         });
-        /*street.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent mapIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:0,0?=q"+Uri.encode("Minsk")));
-                mapIntent.setPackage("com.google.android.apps.maps");
-                startActivity(mapIntent);
-            }
-        });*/
         telephone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
