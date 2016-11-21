@@ -32,12 +32,7 @@ public class InfoActivity extends AppCompatActivity implements DBColumns{
         ImageView imageView = (ImageView)findViewById(R.id.info_image);
         int pos = getIntent().getIntExtra("position", 0);
         Cursor cursor = agencyDAO.readAgency(pos+1);
-        Agency agency = new Agency();
-        agency.setAgencyName(cursor.getString(cursor.getColumnIndex(NAME)));
-        agency.setTelID(cursor.getInt(cursor.getColumnIndex(TELEPHONE_ID)));
-        agency.setWebID(cursor.getInt(cursor.getColumnIndex(WEBSITE_ID)));
-        agency.setEmailID(cursor.getInt(cursor.getColumnIndex(EMAIL_ID)));
-        agency.setStreetID(cursor.getInt(cursor.getColumnIndex(STREET_ID)));
+        Agency agency = new Agency(cursor);
         setTitle(agency.getAgencyName());
         int imageRes = getBaseContext().getResources().getIdentifier("drawable/"+agency.getAgencyName().toLowerCase(), null, getBaseContext().getPackageName());
         Drawable image = getBaseContext().getResources().getDrawable(imageRes);
@@ -53,7 +48,7 @@ public class InfoActivity extends AppCompatActivity implements DBColumns{
             }
         });
         telephone.setText(agencyDAO.readTelephone(agency.getTelID()));
-        website.setText(agencyDAO.readWebsite(agency.getTelID()));
+        website.setText(agencyDAO.readWebsite(agency.getWebID()));
         street.setText(agencyDAO.readStreet(agency.getStreetID()));
         website.setOnClickListener(new View.OnClickListener() {
             @Override

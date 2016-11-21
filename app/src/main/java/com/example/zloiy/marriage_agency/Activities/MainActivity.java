@@ -9,7 +9,7 @@ import android.widget.ListView;
 
 import com.example.zloiy.marriage_agency.DataBase.AgencyDAO;
 import com.example.zloiy.marriage_agency.DataBase.AgencyDBDAO;
-import com.example.zloiy.marriage_agency.MyAdapter;
+import com.example.zloiy.marriage_agency.AgencyAdapter;
 import com.example.zloiy.marriage_agency.R;
 
 
@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         setTitle("Свадебный салон");
         agencyDAO = new AgencyDAO(this);
         ListView list = (ListView) findViewById(R.id.list_view);
-        final MyAdapter adapter = new MyAdapter(this);
+        final AgencyAdapter adapter = new AgencyAdapter(this);
         adapter.notifyDataSetChanged();
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {

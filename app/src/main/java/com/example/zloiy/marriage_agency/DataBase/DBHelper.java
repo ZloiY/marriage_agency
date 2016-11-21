@@ -14,7 +14,7 @@ import java.io.OutputStream;
 
 public class DBHelper extends SQLiteOpenHelper implements DBColumns {
     public static final String DB_NAME = "agency.db";
-    public static  String DB_PATH = "/data/data/com.example.zloiy.marriage_agency/databases/";
+    public static String DB_PATH;
     public static final int DB_VERSION = 1;
     public static final String CREATE_AGENCY = "create table " + AGENCY_TABLE + "(" + ID + " integer primary key autoincrement, " + NAME + " text not null, " + TELEPHONE_ID + " integer not null, " +
             WEBSITE_ID + " integer not null, " + EMAIL_ID + " integer not null, " + STREET_ID + " text not null)";

@@ -12,11 +12,11 @@ import android.widget.TextView;
 import com.example.zloiy.marriage_agency.DataBase.AgencyDAO;
 import com.example.zloiy.marriage_agency.DataBase.DBColumns;
 
-public class MyAdapter extends BaseAdapter implements DBColumns {
+public class AgencyAdapter extends BaseAdapter implements DBColumns {
     private AgencyDAO agencyDAO;
     private LayoutInflater mInflater;
     private Context context;
-    public MyAdapter(Context context){
+    public AgencyAdapter(Context context){
         agencyDAO = new AgencyDAO(context);
         this.context = context;
         mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
